@@ -316,7 +316,7 @@ function AIListingTool() {
           <div style={{ fontSize: 56, marginBottom: 16 }}>🎉</div>
           <h3 style={{ fontWeight: 800, fontSize: 22, color: '#1B2E22', marginBottom: 10 }}>Listing Published!</h3>
           <p style={{ fontSize: 14, color: '#6B8C78', marginBottom: 24 }}>
-            Your W180 cashews ({weight} kg @ ${price}/kg) are now live on the marketplace and indexed on the SOBA blockchain.
+            Your W180 cashews ({weight} kg @ LKR {price}/kg) are now live on the marketplace and indexed on the SOBA blockchain.
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
             <button className="btn btn-outline" onClick={() => { setStage('idle'); setSubmitted(false); setPrice(''); setWeight('') }}>
@@ -427,7 +427,7 @@ function AIListingTool() {
                 <div className="alert alert-success" style={{ marginBottom: 20 }}>
                   <span>🤖</span>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 13 }}>AI Suggested Price: $4.85/kg</div>
+                    <div style={{ fontWeight: 700, fontSize: 13 }}>AI Suggested Price: LKR 4.85/kg</div>
                     <div style={{ fontSize: 11, marginTop: 2 }}>Based on W180 grade, current market, and your location</div>
                   </div>
                 </div>
@@ -451,9 +451,9 @@ function AIListingTool() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Asking Price (USD/kg)</label>
+                <label className="form-label">Asking Price (LKR/kg)</label>
                 <div className="input-with-icon">
-                  <span className="input-icon">$</span>
+                  <span className="input-icon" style={{ fontSize: 11, fontWeight: 700 }}>LKR</span>
                   <input className="form-input" type="number" step="0.01" placeholder="e.g. 4.85"
                     aria-label="Asking price per kilogram"
                     value={price} onChange={e => setPrice(e.target.value)} />
@@ -468,9 +468,9 @@ function AIListingTool() {
                 }}>
                   <div style={{ fontWeight: 700, fontSize: 13, color: '#1B2E22', marginBottom: 8 }}>💰 Estimated Earnings</div>
                   {[
-                    ['Gross Revenue', `$${(price * weight).toFixed(2)}`],
-                    ['Platform Fee (2.5%)', `-$${(price * weight * 0.025).toFixed(2)}`],
-                    ['Net Payout', `$${(price * weight * 0.975).toFixed(2)}`],
+                    ['Gross Revenue', `LKR ${(price * weight).toFixed(2)}`],
+                    ['Platform Fee (2.5%)', `-LKR ${(price * weight * 0.025).toFixed(2)}`],
+                    ['Net Payout', `LKR ${(price * weight * 0.975).toFixed(2)}`],
                   ].map(([k, v]) => (
                     <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}>
                       <span style={{ fontSize: 12, color: '#8BA898' }}>{k}</span>
@@ -521,8 +521,8 @@ const myListings = [
 ═══════════════════════════════════════════════════════════ */
 const dashStats = [
   { icon: '📦', label: 'Active Listings', value: '3', sub: '+1 this week', color: '#2D6A4F' },
-  { icon: '💰', label: 'Total Revenue', value: '$8,420', sub: 'This season', color: '#40916C' },
-  { icon: '📈', label: 'Avg. Price', value: '$4.22/kg', sub: '+18% vs last year', color: '#52B788' },
+  { icon: '💰', label: 'Total Revenue', value: 'LKR 8,420', sub: 'This season', color: '#40916C' },
+  { icon: '📈', label: 'Avg. Price', value: 'LKR 4.22/kg', sub: '+18% vs last year', color: '#52B788' },
   { icon: '⭐', label: 'Seller Rating', value: '4.9 / 5', sub: '47 reviews', color: '#E9C46A' },
 ]
 
@@ -653,7 +653,7 @@ export default function SellerDashboard() {
                   <div style={{ fontWeight: 700, fontSize: 16, color: '#1B2E22', marginBottom: 18 }}>Recent Activity</div>
                   {[
                     { icon: '🔔', text: 'New bid on W180 listing from buyer in India', time: '2 min ago', color: '#3B82F6' },
-                    { icon: '✅', text: 'Payment of $1,400 released for CD-4388 (W320)', time: '1 hr ago', color: '#22C55E' },
+                    { icon: '✅', text: 'Payment of LKR 1,400 released for CD-4388 (W320)', time: '1 hr ago', color: '#22C55E' },
                     { icon: '💬', text: 'Buyer message: "Can you ship to Lagos?"', time: '3 hrs ago', color: '#F59E0B' },
                     { icon: '🤖', text: 'AI quality report generated for new photo upload', time: '5 hrs ago', color: '#8B5CF6' },
                   ].map((a, i) => (
@@ -732,7 +732,7 @@ export default function SellerDashboard() {
                               <span className="badge badge-amber">{l.grade}</span>
                             </td>
                             <td style={{ padding: '16px 18px', fontSize: 13, color: '#4A6B57', fontWeight: 600 }}>{l.weight.toLocaleString()} kg</td>
-                            <td style={{ padding: '16px 18px', fontSize: 13, color: '#1B2E22', fontWeight: 700 }}>${l.price}/kg</td>
+                            <td style={{ padding: '16px 18px', fontSize: 13, color: '#1B2E22', fontWeight: 700 }}>LKR {l.price}/kg</td>
                             <td style={{ padding: '16px 18px' }}>
                               <span className={`badge ${l.status === 'Active' ? 'badge-green' : l.status === 'Sold' ? 'badge-blue' : 'badge-amber'}`}>
                                 {l.status === 'Active' && '● '}

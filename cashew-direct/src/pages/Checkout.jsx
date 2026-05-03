@@ -214,7 +214,7 @@ export default function Checkout() {
       id: 'crypto',
       icon: '₿',
       title: 'Crypto Payment',
-      subtitle: 'USDC, USDT, ETH, MATIC',
+      subtitle: 'USDT, ETH, MATIC',
       desc: 'For B2B wholesale transactions. Send stablecoins directly to the smart-contract escrow. Auto-releases on delivery.',
       color: '#8B5CF6',
       tags: ['B2B / Wholesale', 'On-Chain', 'Smart Contract'],
@@ -259,7 +259,7 @@ export default function Checkout() {
             <h2 style={{ fontWeight: 800, fontSize: 26, color: '#1B2E22', marginBottom: 10 }}>Order Confirmed!</h2>
             <p style={{ fontSize: 14, color: '#6B8C78', marginBottom: 28, lineHeight: 1.7 }}>
               Your order of <strong>{qty} kg of W180 cashews</strong> from Kofi Mensah has been confirmed.
-              The total of <strong>${total.toFixed(2)}</strong> is locked in escrow.
+              The total of <strong>LKR {total.toFixed(2)}</strong> is locked in escrow.
             </p>
 
             {/* ── Order Stage Tracker ── */}
@@ -384,7 +384,7 @@ export default function Checkout() {
                 ['Order ID',      `CD-${Date.now().toString().slice(-6)}`],
                 ['Seller',        'Kofi Mensah · Brong-Ahafo, Ghana'],
                 ['Product',       `W180 Cashews · ${qty} kg`],
-                ['Payment',       payment === 'cod' ? 'Cash on Delivery (Escrow)' : payment === 'card' ? 'Card Payment' : 'Crypto (USDC)'],
+                ['Payment',       payment === 'cod' ? 'Cash on Delivery (Escrow)' : payment === 'card' ? 'Card Payment' : 'Crypto (USDT)'],
                 ['Escrow Status', '🔒 Funds Locked — releases on your confirmation'],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 0', borderBottom: '1px solid rgba(82,183,136,0.08)', gap: 12 }}>
@@ -472,7 +472,7 @@ export default function Checkout() {
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: 12, color: '#8BA898', marginBottom: 3 }}>Unit Price</div>
                   <div style={{ fontWeight: 800, fontSize: 22, color: '#1B2E22' }}>
-                    ${cartItem.price.toFixed(2)}<span style={{ fontSize: 13, fontWeight: 500, color: '#8BA898' }}>/kg</span>
+                    LKR {cartItem.price.toFixed(2)}<span style={{ fontSize: 13, fontWeight: 500, color: '#8BA898' }}>/kg</span>
                   </div>
                 </div>
               </div>
@@ -537,7 +537,7 @@ export default function Checkout() {
 
               {/* Line Items */}
               {[
-                { label: `W180 Cashews × ${qty} kg`, value: `$${subtotal.toFixed(2)}` },
+                { label: `W180 Cashews × ${qty} kg`, value: `LKR ${subtotal.toFixed(2)}` },
                 { label: '📦 Shipping', value: 'Negotiated with seller' },
               ].map(({ label, value }) => (
                 <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid rgba(82,183,136,0.08)' }}>
@@ -553,7 +553,7 @@ export default function Checkout() {
                     <span style={{ fontSize: 13, color: '#6B8C78' }}>Platform Fee (2.5%)</span>
                     <div style={{ fontSize: 10, color: '#52B788', marginTop: 2 }}>✓ Covers escrow & blockchain record</div>
                   </div>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#1B2E22' }}>${platformFee.toFixed(2)}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: '#1B2E22' }}>LKR {platformFee.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -569,7 +569,7 @@ export default function Checkout() {
                 ) : (
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 13, color: '#15803D', fontWeight: 600 }}>✅ FARMER10 applied!</span>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: '#15803D' }}>−${discount.toFixed(2)}</span>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: '#15803D' }}>−LKR {discount.toFixed(2)}</span>
                   </div>
                 )}
               </div>
@@ -577,11 +577,11 @@ export default function Checkout() {
               {/* Total */}
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px 0 0' }}>
                 <span style={{ fontWeight: 800, fontSize: 16, color: '#1B2E22' }}>Total</span>
-                <span style={{ fontWeight: 800, fontSize: 22, color: '#2D6A4F' }}>${total.toFixed(2)}</span>
+                <span style={{ fontWeight: 800, fontSize: 22, color: '#2D6A4F' }}>LKR {total.toFixed(2)}</span>
               </div>
 
               <div style={{ fontSize: 10, color: '#8BA898', marginTop: 4, textAlign: 'right' }}>
-                USD · Escrow-protected
+                LKR · Escrow-protected
               </div>
             </div>
 
@@ -621,7 +621,7 @@ export default function Checkout() {
               {stage === 'processing' ? (
                 <><div className="spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> Processing…</>
               ) : (
-                `🔒 Confirm Order · $${total.toFixed(2)}`
+                `🔒 Confirm Order · LKR ${total.toFixed(2)}`
               )}
             </button>
 

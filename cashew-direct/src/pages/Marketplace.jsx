@@ -88,25 +88,25 @@ function AuctionCard({ auction }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
         <div style={{ background: 'rgba(45,106,79,0.06)', borderRadius: 10, padding: '12px 14px' }}>
           <div style={{ fontSize: 11, color: '#8BA898' }}>Current Bid</div>
-          <div style={{ fontWeight: 800, fontSize: 22, color: '#2D6A4F', lineHeight: 1.2 }}>${myBid.toFixed(2)}<span style={{ fontSize: 12, fontWeight: 500, color: '#8BA898' }}>/kg</span></div>
-          <div style={{ fontSize: 11, color: '#52B788', marginTop: 2 }}>Total: ${(myBid * auction.weight).toLocaleString()}</div>
+          <div style={{ fontWeight: 800, fontSize: 22, color: '#2D6A4F', lineHeight: 1.2 }}>LKR {myBid.toFixed(2)}<span style={{ fontSize: 12, fontWeight: 500, color: '#8BA898' }}>/kg</span></div>
+          <div style={{ fontSize: 11, color: '#52B788', marginTop: 2 }}>Total: LKR {(myBid * auction.weight).toLocaleString()}</div>
         </div>
         <div style={{ background: 'rgba(233,196,106,0.08)', borderRadius: 10, padding: '12px 14px' }}>
           <div style={{ fontSize: 11, color: '#8BA898' }}>Bids Placed</div>
           <div style={{ fontWeight: 800, fontSize: 22, color: '#8B6914', lineHeight: 1.2 }}>{auction.bids + (bidPlaced ? 1 : 0)}</div>
-          <div style={{ fontSize: 11, color: '#8BA898', marginTop: 2 }}>Min bid: ${auction.minBid}/kg</div>
+          <div style={{ fontSize: 11, color: '#8BA898', marginTop: 2 }}>Min bid: LKR {auction.minBid}/kg</div>
         </div>
       </div>
 
       {bidPlaced && (
         <div className="alert alert-success" style={{ marginBottom: 12 }}>
-          <span>🎉</span><span style={{ fontSize: 13 }}>Bid placed! You're the highest bidder at ${myBid.toFixed(2)}/kg.</span>
+          <span>🎉</span><span style={{ fontSize: 13 }}>Bid placed! You're the highest bidder at LKR {myBid.toFixed(2)}/kg.</span>
         </div>
       )}
 
       <div style={{ display: 'flex', gap: 10 }}>
         <div style={{ flex: 1, position: 'relative' }}>
-          <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#8BA898', fontSize: 14, fontWeight: 600 }}>$</span>
+          <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#8BA898', fontSize: 11, fontWeight: 700 }}>LKR</span>
           <input
             type="number" step="0.01"
             placeholder={`>${myBid.toFixed(2)}/kg`}
@@ -185,13 +185,13 @@ function ProductCard({ product }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div>
             <div style={{ fontSize: 24, fontWeight: 800, color: '#1B2E22', lineHeight: 1 }}>
-              ${product.price}<span style={{ fontSize: 13, fontWeight: 500, color: '#8BA898' }}>/kg</span>
+              LKR {product.price}<span style={{ fontSize: 13, fontWeight: 500, color: '#8BA898' }}>/kg</span>
             </div>
             <div style={{ fontSize: 12, color: '#6B8C78', marginTop: 3 }}>{product.weight.toLocaleString()} kg available</div>
           </div>
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontSize: 11, color: '#8BA898', marginBottom: 3 }}>Total Value</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#2D6A4F' }}>${(product.price * product.weight).toLocaleString()}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#2D6A4F' }}>LKR {(product.price * product.weight).toLocaleString()}</div>
           </div>
         </div>
       </div>
@@ -293,7 +293,7 @@ function FilterSidebar({ filters, setFilters }) {
 
       {/* Price Range */}
       <div style={{ marginBottom: 22 }}>
-        <label className="form-label">💰 Price Range ($/kg)</label>
+        <label className="form-label">💰 Price Range (LKR/kg)</label>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <input className="form-input" type="number" step="0.1" placeholder="Min"
             value={filters.priceMin} onChange={e => setFilters(f => ({ ...f, priceMin: e.target.value }))}
@@ -388,7 +388,7 @@ export default function Marketplace() {
                 🥜 Cashew Marketplace
               </h1>
               <p style={{ fontSize: 14, color: '#6B8C78' }}>
-                {filtered.length} verified listings · Avg. {((filtered.reduce((s,p) => s + p.price, 0) / (filtered.length || 1))).toFixed(2)} $/kg · Direct from farmers
+                {filtered.length} verified listings · Avg. LKR {((filtered.reduce((s,p) => s + p.price, 0) / (filtered.length || 1))).toFixed(2)}/kg · Direct from farmers
               </p>
             </div>
             {/* View Toggle */}

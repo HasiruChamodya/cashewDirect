@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 
 /* ── Live Price Ticker ── */
 const tickerItems = [
-  { label: 'W180 Premium', price: '$4.85/kg', change: '+12%', region: 'Côte d\'Ivoire' },
-  { label: 'W210 Grade A',  price: '$4.20/kg', change: '+8%',  region: 'Ghana' },
-  { label: 'W320 Standard', price: '$3.60/kg', change: '+5%',  region: 'Nigeria' },
-  { label: 'W450 Economy',  price: '$2.90/kg', change: '+3%',  region: 'Benin' },
-  { label: 'Organic W180', price: '$5.40/kg', change: '+18%', region: 'Senegal' },
-  { label: 'W240 Special',  price: '$4.05/kg', change: '+9%',  region: 'Togo' },
-  { label: 'W320 Bulk',     price: '$3.45/kg', change: '+6%',  region: 'Tanzania' },
-  { label: 'W180 Direct',   price: '$4.90/kg', change: '+14%', region: 'Mozambique' },
+  { label: 'W180 Premium', price: 'LKR 4.85/kg', change: '+12%', region: 'Côte d\'Ivoire' },
+  { label: 'W210 Grade A',  price: 'LKR 4.20/kg', change: '+8%',  region: 'Ghana' },
+  { label: 'W320 Standard', price: 'LKR 3.60/kg', change: '+5%',  region: 'Nigeria' },
+  { label: 'W450 Economy',  price: 'LKR 2.90/kg', change: '+3%',  region: 'Benin' },
+  { label: 'Organic W180', price: 'LKR 5.40/kg', change: '+18%', region: 'Senegal' },
+  { label: 'W240 Special',  price: 'LKR 4.05/kg', change: '+9%',  region: 'Togo' },
+  { label: 'W320 Bulk',     price: 'LKR 3.45/kg', change: '+6%',  region: 'Tanzania' },
+  { label: 'W180 Direct',   price: 'LKR 4.90/kg', change: '+14%', region: 'Mozambique' },
 ]
 
 function PriceTicker() {
@@ -129,7 +129,7 @@ const testimonials = [
   {
     name: 'Kofi Mensah',
     role: 'Cashew Farmer, Ghana',
-    text: 'Before CashewDirect, I sold my entire harvest to a single middleman for $2.10/kg. Last season I averaged $3.80/kg selling to 7 different buyers directly. My family\'s income doubled.',
+    text: 'Before CashewDirect, I sold my entire harvest to a single middleman for LKR 2.10/kg. Last season I averaged LKR 3.80/kg selling to 7 different buyers directly. My family\'s income doubled.',
     avatar: 'KM',
     stars: 5,
     improvement: '+81% income',
@@ -286,17 +286,17 @@ export default function Landing() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <div style={{ fontSize: 12, color: '#8BA898' }}>Asking Price</div>
-                    <div style={{ fontWeight: 800, fontSize: 28, color: '#1B2E22' }}>$4.85<span style={{ fontSize: 14, fontWeight: 500, color: '#6B8C78' }}>/kg</span></div>
+                    <div style={{ fontWeight: 800, fontSize: 24, color: '#1B2E22' }}>LKR 4.85<span style={{ fontSize: 14, fontWeight: 500, color: '#6B8C78' }}>/kg</span></div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 12, color: '#8BA898' }}>vs. Middleman</div>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: '#22C55E' }}>+$1.60 ▲ 49%</div>
+                    <div style={{ fontWeight: 700, fontSize: 16, color: '#22C55E' }}>+LKR 1.60 ▲ 49%</div>
                   </div>
                 </div>
                 <div style={{ marginTop: 12 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
                     <span style={{ fontSize: 11, color: '#8BA898' }}>Farmer Earnings</span>
-                    <span style={{ fontSize: 11, fontWeight: 600, color: '#2D6A4F' }}>$4.73/kg after 2.5% fee</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: '#2D6A4F' }}>LKR 4.73/kg after 2.5% fee</span>
                   </div>
                   <div className="progress">
                     <div className="progress-fill" style={{ width: '88%' }} />
@@ -340,7 +340,7 @@ export default function Landing() {
                 <span style={{ fontSize: 22 }}>✅</span>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: 13, color: '#1B2E22' }}>Payment Released</div>
-                  <div style={{ fontSize: 12, color: '#22C55E' }}>$2,425 → Kofi M.</div>
+                  <div style={{ fontSize: 12, color: '#22C55E' }}>LKR 2,425 → Kofi M.</div>
                 </div>
               </div>
             </div>
