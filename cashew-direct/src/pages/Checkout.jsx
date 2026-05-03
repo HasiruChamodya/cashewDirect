@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 const cartItem = {
   id: 'P001',
   grade: 'W180',
-  seller: 'Kofi Mensah',
-  location: 'Brong-Ahafo, Ghana',
+  seller: 'Sunil Perera',
+  location: 'Hambantota, Southern Province',
   price: 4.85,
   quantity: 200,
   verified: true,
@@ -258,7 +258,7 @@ export default function Checkout() {
             <div style={{ fontSize: 64, marginBottom: 16, animation: 'scaleIn 0.5s ease' }}>🎉</div>
             <h2 style={{ fontWeight: 800, fontSize: 26, color: '#1B2E22', marginBottom: 10 }}>Order Confirmed!</h2>
             <p style={{ fontSize: 14, color: '#6B8C78', marginBottom: 28, lineHeight: 1.7 }}>
-              Your order of <strong>{qty} kg of W180 cashews</strong> from Kofi Mensah has been confirmed.
+              Your order of <strong>{qty} kg of W180 cashews</strong> from Sunil Perera has been confirmed.
               The total of <strong>LKR {total.toFixed(2)}</strong> is locked in escrow.
             </p>
 
@@ -382,7 +382,7 @@ export default function Checkout() {
               <div style={{ fontWeight: 700, fontSize: 14, color: '#1B2E22', marginBottom: 12 }}>📋 Order Details</div>
               {[
                 ['Order ID',      `CD-${Date.now().toString().slice(-6)}`],
-                ['Seller',        'Kofi Mensah · Brong-Ahafo, Ghana'],
+                ['Seller',        'Sunil Perera · Hambantota, Southern Province'],
                 ['Product',       `W180 Cashews · ${qty} kg`],
                 ['Payment',       payment === 'cod' ? 'Cash on Delivery (Escrow)' : payment === 'card' ? 'Card Payment' : 'Crypto (USDT)'],
                 ['Escrow Status', '🔒 Funds Locked — releases on your confirmation'],
@@ -509,7 +509,7 @@ export default function Checkout() {
                   <select className="form-select" aria-label="Country"
                     value={shippingForm.country} onChange={e => setShippingForm({ ...shippingForm, country: e.target.value })}>
                     <option value="">— Select —</option>
-                    {['India', 'United States', 'United Kingdom', 'Germany', 'France', 'Netherlands', 'Japan', 'China', 'Brazil'].map(c => (
+                    {['Sri Lanka', 'India', 'United States', 'United Kingdom', 'Germany', 'France', 'Netherlands', 'Japan', 'China', 'Australia'].map(c => (
                       <option key={c}>{c}</option>
                     ))}
                   </select>

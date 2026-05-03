@@ -5,21 +5,21 @@ import { Link } from 'react-router-dom'
    MOCK DATA
 ═══════════════════════════════════════════════════════════ */
 const allProducts = [
-  { id: 'P001', grade: 'W180', seller: 'Kofi Mensah', location: 'Brong-Ahafo, Ghana', distance: 12, price: 4.85, weight: 500,  verified: true,  rating: 4.9, reviews: 47, disease: 'Free', harvest: '2026-04-20', img: '🥜' },
-  { id: 'P002', grade: 'W210', seller: 'Amina Traoré', location: 'Bondoukou, CI',     distance: 45, price: 4.20, weight: 800,  verified: true,  rating: 4.8, reviews: 33, disease: 'Free', harvest: '2026-04-18', img: '🥜' },
-  { id: 'P003', grade: 'W320', seller: 'Emmanuel Ade', location: 'Ogun State, NG',    distance: 89, price: 3.60, weight: 1200, verified: true,  rating: 4.7, reviews: 62, disease: 'Free', harvest: '2026-04-15', img: '🥜' },
-  { id: 'P004', grade: 'W240', seller: 'Fatou Diallo',  location: 'Casamance, SN',    distance: 120,price: 3.95, weight: 400,  verified: false, rating: 4.2, reviews: 8,  disease: 'Free', harvest: '2026-04-22', img: '🥜' },
-  { id: 'P005', grade: 'W180', seller: 'Joseph Okafor', location: 'Benue, Nigeria',   distance: 76, price: 4.90, weight: 650,  verified: true,  rating: 4.9, reviews: 29, disease: 'Free', harvest: '2026-04-25', img: '🥜' },
-  { id: 'P006', grade: 'W320', seller: 'Grace Asante',  location: 'Eastern, Ghana',   distance: 33, price: 3.50, weight: 2000, verified: true,  rating: 4.6, reviews: 55, disease: 'Free', harvest: '2026-04-12', img: '🥜' },
-  { id: 'P007', grade: 'W450', seller: 'Moussa Coulibaly', location: 'Sikasso, ML',   distance: 200,price: 2.85, weight: 3000, verified: true,  rating: 4.5, reviews: 41, disease: 'Free', harvest: '2026-04-10', img: '🥜' },
-  { id: 'P008', grade: 'W210', seller: 'Nadia Boukari',  location: 'Atacora, Benin',  distance: 55, price: 4.10, weight: 300,  verified: false, rating: 4.0, reviews: 4,  disease: 'Flag', harvest: '2026-04-28', img: '🥜' },
-  { id: 'P009', grade: 'W180', seller: 'Kwame Acheampong', location: 'Ashanti, GH',   distance: 18, price: 4.75, weight: 420,  verified: true,  rating: 4.8, reviews: 38, disease: 'Free', harvest: '2026-04-27', img: '🥜' },
+  { id: 'P001', grade: 'W180', seller: 'Sunil Perera',       location: 'Hambantota, Southern',   distance: 12,  price: 4.85, weight: 500,  verified: true,  rating: 4.9, reviews: 47, disease: 'Free', harvest: '2026-04-20', img: '🥜' },
+  { id: 'P002', grade: 'W210', seller: 'Kumari Silva',        location: 'Puttalam, NW Province',  distance: 45,  price: 4.20, weight: 800,  verified: true,  rating: 4.8, reviews: 33, disease: 'Free', harvest: '2026-04-18', img: '🥜' },
+  { id: 'P003', grade: 'W320', seller: 'Rohan Fernando',      location: 'Monaragala, Uva',        distance: 89,  price: 3.60, weight: 1200, verified: true,  rating: 4.7, reviews: 62, disease: 'Free', harvest: '2026-04-15', img: '🥜' },
+  { id: 'P004', grade: 'W240', seller: 'Priya Wickramasinghe',location: 'Ampara, Eastern',        distance: 120, price: 3.95, weight: 400,  verified: false, rating: 4.2, reviews: 8,  disease: 'Free', harvest: '2026-04-22', img: '🥜' },
+  { id: 'P005', grade: 'W180', seller: 'Chaminda Bandara',    location: 'Kurunegala, NW Province',distance: 76,  price: 4.90, weight: 650,  verified: true,  rating: 4.9, reviews: 29, disease: 'Free', harvest: '2026-04-25', img: '🥜' },
+  { id: 'P006', grade: 'W320', seller: 'Malini Rajapaksa',    location: 'Anuradhapura, NC',       distance: 33,  price: 3.50, weight: 2000, verified: true,  rating: 4.6, reviews: 55, disease: 'Free', harvest: '2026-04-12', img: '🥜' },
+  { id: 'P007', grade: 'W450', seller: 'Saman De Silva',      location: 'Mannar, Northern',       distance: 200, price: 2.85, weight: 3000, verified: true,  rating: 4.5, reviews: 41, disease: 'Free', harvest: '2026-04-10', img: '🥜' },
+  { id: 'P008', grade: 'W210', seller: 'Kavindi Weerasinghe', location: 'Batticaloa, Eastern',    distance: 55,  price: 4.10, weight: 300,  verified: false, rating: 4.0, reviews: 4,  disease: 'Flag', harvest: '2026-04-28', img: '🥜' },
+  { id: 'P009', grade: 'W180', seller: 'Ranjith Dissanayake', location: 'Polonnaruwa, NC',        distance: 18,  price: 4.75, weight: 420,  verified: true,  rating: 4.8, reviews: 38, disease: 'Free', harvest: '2026-04-27', img: '🥜' },
 ]
 
 const allAuctions = [
-  { id: 'A001', grade: 'W180', seller: 'Farmers Co-op Kumasi', location: 'Kumasi, Ghana', currentBid: 4.65, weight: 5000, bids: 12, endsIn: 7200,  minBid: 4.50, verified: true },
-  { id: 'A002', grade: 'W320', seller: 'Bondoukou Growers Ltd', location: 'Bondoukou, CI', currentBid: 3.40, weight: 8000, bids: 7,  endsIn: 14400, minBid: 3.20, verified: true },
-  { id: 'A003', grade: 'W210', seller: 'Benue Valley Exports',  location: 'Makurdi, NG',   currentBid: 3.95, weight: 3500, bids: 5,  endsIn: 3600,  minBid: 3.80, verified: true },
+  { id: 'A001', grade: 'W180', seller: 'Hambantota Farmers Co-op',   location: 'Hambantota, Southern', currentBid: 4.65, weight: 5000, bids: 12, endsIn: 7200,  minBid: 4.50, verified: true },
+  { id: 'A002', grade: 'W320', seller: 'Puttalam Growers Ltd',        location: 'Puttalam, NW Province', currentBid: 3.40, weight: 8000, bids: 7,  endsIn: 14400, minBid: 3.20, verified: true },
+  { id: 'A003', grade: 'W210', seller: 'Monaragala Valley Exports',   location: 'Monaragala, Uva',       currentBid: 3.95, weight: 3500, bids: 5,  endsIn: 3600,  minBid: 3.80, verified: true },
 ]
 
 /* ─── Timer Hook ─── */
@@ -221,7 +221,7 @@ function ProductCard({ product }) {
 ═══════════════════════════════════════════════════════════ */
 function FilterSidebar({ filters, setFilters }) {
   const grades    = ['W180', 'W210', 'W240', 'W320', 'W450']
-  const countries = ['Ghana', "Côte d'Ivoire", 'Nigeria', 'Senegal', 'Tanzania']
+  const countries = ['Hambantota', 'Puttalam', 'Kurunegala', 'Monaragala', 'Ampara', 'Anuradhapura', 'Mannar', 'Batticaloa', 'Polonnaruwa']
 
   const toggleGrade = (g) => {
     setFilters(f => ({

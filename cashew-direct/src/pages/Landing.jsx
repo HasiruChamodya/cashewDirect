@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 
 /* ── Live Price Ticker ── */
 const tickerItems = [
-  { label: 'W180 Premium', price: 'LKR 4.85/kg', change: '+12%', region: 'Côte d\'Ivoire' },
-  { label: 'W210 Grade A',  price: 'LKR 4.20/kg', change: '+8%',  region: 'Ghana' },
-  { label: 'W320 Standard', price: 'LKR 3.60/kg', change: '+5%',  region: 'Nigeria' },
-  { label: 'W450 Economy',  price: 'LKR 2.90/kg', change: '+3%',  region: 'Benin' },
-  { label: 'Organic W180', price: 'LKR 5.40/kg', change: '+18%', region: 'Senegal' },
-  { label: 'W240 Special',  price: 'LKR 4.05/kg', change: '+9%',  region: 'Togo' },
-  { label: 'W320 Bulk',     price: 'LKR 3.45/kg', change: '+6%',  region: 'Tanzania' },
-  { label: 'W180 Direct',   price: 'LKR 4.90/kg', change: '+14%', region: 'Mozambique' },
+  { label: 'W180 Premium', price: 'LKR 4.85/kg', change: '+12%', region: 'Hambantota' },
+  { label: 'W210 Grade A',  price: 'LKR 4.20/kg', change: '+8%',  region: 'Puttalam' },
+  { label: 'W320 Standard', price: 'LKR 3.60/kg', change: '+5%',  region: 'Monaragala' },
+  { label: 'W450 Economy',  price: 'LKR 2.90/kg', change: '+3%',  region: 'Ampara' },
+  { label: 'Organic W180', price: 'LKR 5.40/kg', change: '+18%', region: 'Kurunegala' },
+  { label: 'W240 Special',  price: 'LKR 4.05/kg', change: '+9%',  region: 'Anuradhapura' },
+  { label: 'W320 Bulk',     price: 'LKR 3.45/kg', change: '+6%',  region: 'Mannar' },
+  { label: 'W180 Direct',   price: 'LKR 4.90/kg', change: '+14%', region: 'Batticaloa' },
 ]
 
 function PriceTicker() {
@@ -127,26 +127,26 @@ const features = [
 /* ── Testimonials ── */
 const testimonials = [
   {
-    name: 'Kofi Mensah',
-    role: 'Cashew Farmer, Ghana',
+    name: 'Sunil Perera',
+    role: 'Cashew Farmer, Hambantota',
     text: 'Before CashewDirect, I sold my entire harvest to a single middleman for LKR 2.10/kg. Last season I averaged LKR 3.80/kg selling to 7 different buyers directly. My family\'s income doubled.',
-    avatar: 'KM',
+    avatar: 'SP',
     stars: 5,
     improvement: '+81% income',
   },
   {
-    name: 'Amina Traoré',
-    role: 'Cooperative Leader, Côte d\'Ivoire',
+    name: 'Kumari Silva',
+    role: 'Cooperative Leader, Kurunegala',
     text: 'The AI grading tool is a game-changer. Our cooperative used to argue over grades with buyers. Now the AI report is the final word — buyers trust it and we get fair prices every time.',
-    avatar: 'AT',
+    avatar: 'KS',
     stars: 5,
     improvement: '+42% price',
   },
   {
-    name: 'Raj Patel',
-    role: 'Wholesale Buyer, India',
+    name: 'Rohan Fernando',
+    role: 'Wholesale Buyer, Colombo',
     text: 'I source over 200 tonnes per season through CashewDirect. The verified quality scores, direct farmer contact, and escrow payment give me the confidence to buy without physical inspection.',
-    avatar: 'RP',
+    avatar: 'RF',
     stars: 5,
     improvement: '−18% costs',
   },
@@ -309,8 +309,8 @@ export default function Landing() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div className="avatar">KO</div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 600, fontSize: 14, color: '#1B2E22' }}>Kwame Owusu</div>
-                  <div style={{ fontSize: 12, color: '#8BA898' }}>📍 Brong-Ahafo, Ghana · 500 kg available</div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: '#1B2E22' }}>Nimal Jayawardena</div>
+                  <div style={{ fontSize: 12, color: '#8BA898' }}>📍 Hambantota, Sri Lanka · 500 kg available</div>
                 </div>
                 <Link to="/marketplace" className="btn btn-primary btn-sm">View</Link>
               </div>
@@ -340,7 +340,7 @@ export default function Landing() {
                 <span style={{ fontSize: 22 }}>✅</span>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: 13, color: '#1B2E22' }}>Payment Released</div>
-                  <div style={{ fontSize: 12, color: '#22C55E' }}>LKR 2,425 → Kofi M.</div>
+                  <div style={{ fontSize: 12, color: '#22C55E' }}>LKR 2,425 → Sunil P.</div>
                 </div>
               </div>
             </div>

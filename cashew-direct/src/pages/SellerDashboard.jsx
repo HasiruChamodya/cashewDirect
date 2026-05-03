@@ -45,7 +45,7 @@ function SOBAVerification({ onComplete }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div className="form-group">
             <label className="form-label">Full Legal Name</label>
-            <input className="form-input" placeholder="e.g. Kofi Mensah" aria-label="Full legal name"
+            <input className="form-input" placeholder="e.g. Sunil Perera" aria-label="Full legal name"
               value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
           </div>
           <div className="form-group">
@@ -58,7 +58,7 @@ function SOBAVerification({ onComplete }) {
           <label className="form-label">Country of Operation</label>
           <select className="form-select" aria-label="Country">
             <option value="">— Select country —</option>
-            {['Ghana', "Côte d'Ivoire", 'Nigeria', 'Senegal', 'Tanzania', 'Mozambique', 'Benin', 'Togo'].map(c => (
+            {['Hambantota', 'Puttalam', 'Kurunegala', 'Monaragala', 'Ampara', 'Anuradhapura', 'Mannar', 'Batticaloa', 'Polonnaruwa', 'Matale', 'Trincomalee'].map(c => (
               <option key={c}>{c}</option>
             ))}
           </select>
@@ -185,7 +185,7 @@ function SOBAVerification({ onComplete }) {
           {[
             ['Identity', '✅ Verified (KYC Level 2)'],
             ['Document', '✅ Uploaded & AI-Checked'],
-            ['Location', '✅ GPS-Pinned (Ghana)'],
+            ['Location', '✅ GPS-Pinned (Hambantota, Sri Lanka)'],
             ['Network', 'SOBA Mainnet'],
             ['Fee', 'Zero — Subsidised by platform'],
           ].map(([k, v]) => (
@@ -652,9 +652,9 @@ export default function SellerDashboard() {
                 <div className="glass-strong" style={{ padding: 24 }}>
                   <div style={{ fontWeight: 700, fontSize: 16, color: '#1B2E22', marginBottom: 18 }}>Recent Activity</div>
                   {[
-                    { icon: '🔔', text: 'New bid on W180 listing from buyer in India', time: '2 min ago', color: '#3B82F6' },
+                    { icon: '🔔', text: 'New bid on W180 listing from buyer in Colombo', time: '2 min ago', color: '#3B82F6' },
                     { icon: '✅', text: 'Payment of LKR 1,400 released for CD-4388 (W320)', time: '1 hr ago', color: '#22C55E' },
-                    { icon: '💬', text: 'Buyer message: "Can you ship to Lagos?"', time: '3 hrs ago', color: '#F59E0B' },
+                    { icon: '💬', text: 'Buyer message: "Can you ship to Galle?"', time: '3 hrs ago', color: '#F59E0B' },
                     { icon: '🤖', text: 'AI quality report generated for new photo upload', time: '5 hrs ago', color: '#8B5CF6' },
                   ].map((a, i) => (
                     <div key={i} style={{
