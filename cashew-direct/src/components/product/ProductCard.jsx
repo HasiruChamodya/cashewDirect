@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Heart, Plus } from 'lucide-react';
 import ProductImage from '../ui/ProductImage';
 import Badge from '../ui/Badge';
@@ -7,12 +7,16 @@ import { formatPrice } from '../../lib/format';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useToast } from '../../context/ToastContext';
+import { useAuth } from '../../context/AuthContext';
 import { STOCK_THRESHOLD_LOW } from '../../data/products';
 
 export default function ProductCard({ product, variant = 0 }) {
   const { addItem } = useCart();
   const { toggle, has } = useWishlist();
   const { showToast } = useToast();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const wishlisted = has(product.id);
   const outOfStock = product.stock === 0;
@@ -23,6 +27,11 @@ export default function ProductCard({ product, variant = 0 }) {
     e.preventDefault();
     e.stopPropagation();
     if (outOfStock) return;
+    if (!isAuthenticated) {
+      showToast('Please sign in to add items to your cart.');
+      navigate('/login', { state: { from: location } });
+      return;
+    }
     addItem(product.id, 1);
     showToast(`${product.name} added to cart`);
   }
@@ -48,7 +57,7 @@ export default function ProductCard({ product, variant = 0 }) {
 
         {primaryBadge && (
           <div className="absolute left-3 top-3">
-            <Badge variant={primaryBadge}>{primaryBadge === 'sale' && product.compareAtPrice ? `-${Math.round((1 - product.price / product.compareAtPrice) * 100)}%` : undefined}</Badge>
+            <Badge variant={primaryBadge} />
           </div>
         )}
 
@@ -85,9 +94,6 @@ export default function ProductCard({ product, variant = 0 }) {
 
         <div className="mt-1 flex items-baseline gap-2">
           <span className="text-base font-bold text-gray-900">{formatPrice(product.price)}</span>
-          {product.compareAtPrice && (
-            <span className="text-sm text-gray-400 line-through">{formatPrice(product.compareAtPrice)}</span>
-          )}
         </div>
 
         {lowStock && (

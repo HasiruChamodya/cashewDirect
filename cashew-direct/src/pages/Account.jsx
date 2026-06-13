@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import {
   Package,
   Heart,
@@ -9,16 +9,19 @@ import {
   Trash2,
   Star,
   LogOut,
+  Store,
 } from 'lucide-react';
-import { currentUser, orders, addresses as initialAddresses, ORDER_STATUS_STYLES } from '../data/account';
+import { orders, addresses as initialAddresses, ORDER_STATUS_STYLES } from '../data/account';
 import { getProductById } from '../data/products';
 import { formatPrice, formatDate } from '../lib/format';
+import { BUSINESS_TYPES } from '../lib/constants';
+import { useAuth } from '../context/AuthContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import Button from '../components/ui/Button';
 import EmptyState from '../components/ui/EmptyState';
 import Modal from '../components/ui/Modal';
-import Input, { Label } from '../components/ui/Input';
+import Input, { Label, Select, Textarea } from '../components/ui/Input';
 import Tabs from '../components/ui/Tabs';
 import ProductImage from '../components/ui/ProductImage';
 import ProductCard from '../components/product/ProductCard';
@@ -275,85 +278,194 @@ function AddressesTab() {
 }
 
 function ProfileTab() {
-  const [form, setForm] = useState({
-    firstName: currentUser.firstName,
-    lastName: currentUser.lastName,
-    email: currentUser.email,
-    phone: currentUser.phone,
-  });
+  const { user, updateProfile } = useAuth();
   const { showToast } = useToast();
+  const [form, setForm] = useState({
+    fullName: user.fullName,
+    email: user.email,
+    phone: user.phone,
+  });
+  const [storeForm, setStoreForm] = useState(
+    user.sellerProfile
+      ? {
+          storeName: user.sellerProfile.storeName,
+          businessType: user.sellerProfile.businessType,
+          businessRegNumber: user.sellerProfile.businessRegNumber || '',
+          tagline: user.sellerProfile.tagline || '',
+          description: user.sellerProfile.description || '',
+        }
+      : null
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
+    updateProfile({
+      fullName: form.fullName.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+    });
     showToast('Profile updated successfully');
   }
 
+  function handleStoreSubmit(e) {
+    e.preventDefault();
+    updateProfile({
+      sellerProfile: {
+        ...user.sellerProfile,
+        storeName: storeForm.storeName.trim(),
+        businessType: storeForm.businessType,
+        businessRegNumber: storeForm.businessRegNumber.trim(),
+        tagline: storeForm.tagline.trim(),
+        description: storeForm.description.trim(),
+      },
+    });
+    showToast('Store profile updated successfully');
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl rounded-2xl border border-gray-100 bg-white p-5 shadow-card sm:p-6">
-      <h2 className="text-lg font-bold text-gray-900">Profile Settings</h2>
-      <p className="mt-1 text-sm text-gray-500">Update your personal information.</p>
+    <div className="flex flex-col gap-6">
+      <form onSubmit={handleSubmit} className="max-w-2xl rounded-2xl border border-gray-100 bg-white p-5 shadow-card sm:p-6">
+        <h2 className="text-lg font-bold text-gray-900">Profile Settings</h2>
+        <p className="mt-1 text-sm text-gray-500">Update your personal information.</p>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="first-name" required>
-            First name
-          </Label>
-          <Input
-            id="first-name"
-            required
-            value={form.firstName}
-            onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-          />
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="sm:col-span-2">
+            <Label htmlFor="full-name" required>
+              Full name
+            </Label>
+            <Input
+              id="full-name"
+              required
+              value={form.fullName}
+              onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+            />
+          </div>
+          <div>
+            <Label htmlFor="email" required>
+              Email address
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              required
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+          </div>
+          <div>
+            <Label htmlFor="profile-phone" required>
+              Phone number
+            </Label>
+            <Input
+              id="profile-phone"
+              type="tel"
+              required
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            />
+          </div>
         </div>
-        <div>
-          <Label htmlFor="last-name" required>
-            Last name
-          </Label>
-          <Input
-            id="last-name"
-            required
-            value={form.lastName}
-            onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <Label htmlFor="email" required>
-            Email address
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            required
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <Label htmlFor="profile-phone" required>
-            Phone number
-          </Label>
-          <Input
-            id="profile-phone"
-            type="tel"
-            required
-            value={form.phone}
-            onChange={(e) => setForm({ ...form, phone: e.target.value })}
-          />
-        </div>
-      </div>
 
-      <div className="mt-6 flex justify-end border-t border-gray-100 pt-5">
-        <Button type="submit">Save Changes</Button>
-      </div>
-    </form>
+        <div className="mt-6 flex justify-end border-t border-gray-100 pt-5">
+          <Button type="submit">Save Changes</Button>
+        </div>
+      </form>
+
+      {storeForm && (
+        <form onSubmit={handleStoreSubmit} className="max-w-2xl rounded-2xl border border-gray-100 bg-white p-5 shadow-card sm:p-6">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-gray-900">
+            <Store className="h-5 w-5 text-brand-600" /> Store Profile
+          </h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Your store is live at{' '}
+            <span className="font-semibold text-brand-700">
+              kaju.live/store/{user.sellerProfile.storeSlug}
+            </span>
+          </p>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="sm:col-span-2">
+              <Label htmlFor="store-name" required>
+                Store name
+              </Label>
+              <Input
+                id="store-name"
+                required
+                maxLength={120}
+                value={storeForm.storeName}
+                onChange={(e) => setStoreForm({ ...storeForm, storeName: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="business-type" required>
+                Business type
+              </Label>
+              <Select
+                id="business-type"
+                value={storeForm.businessType}
+                onChange={(e) => setStoreForm({ ...storeForm, businessType: e.target.value })}
+              >
+                {BUSINESS_TYPES.map((t) => (
+                  <option key={t.value} value={t.value}>
+                    {t.label}
+                  </option>
+                ))}
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="business-reg" required={storeForm.businessType !== 'individual'}>
+                Business registration number
+              </Label>
+              <Input
+                id="business-reg"
+                required={storeForm.businessType !== 'individual'}
+                value={storeForm.businessRegNumber}
+                onChange={(e) => setStoreForm({ ...storeForm, businessRegNumber: e.target.value })}
+                placeholder={storeForm.businessType === 'individual' ? 'Optional' : 'Required for this business type'}
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <Label htmlFor="store-tagline">Store tagline</Label>
+              <Input
+                id="store-tagline"
+                maxLength={160}
+                value={storeForm.tagline}
+                onChange={(e) => setStoreForm({ ...storeForm, tagline: e.target.value })}
+                placeholder="A short line that describes your store"
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <Label htmlFor="store-description">Store description</Label>
+              <Textarea
+                id="store-description"
+                rows={3}
+                value={storeForm.description}
+                onChange={(e) => setStoreForm({ ...storeForm, description: e.target.value })}
+                placeholder="Tell buyers about your farm, products and what makes them special"
+              />
+            </div>
+          </div>
+
+          <div className="mt-6 flex justify-end border-t border-gray-100 pt-5">
+            <Button type="submit">Save Store Profile</Button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
 
 export default function Account() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { showToast } = useToast();
+  const { user, isAuthenticated, logout } = useAuth();
   const tab = searchParams.get('tab') || 'orders';
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
 
   function setTab(id) {
     const next = new URLSearchParams(searchParams);
@@ -362,11 +474,17 @@ export default function Account() {
   }
 
   function handleSignOut() {
+    logout();
     showToast('You have been signed out');
     navigate('/');
   }
 
-  const initials = `${currentUser.firstName[0]}${currentUser.lastName[0]}`;
+  const initials = user.fullName
+    .split(' ')
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -381,10 +499,13 @@ export default function Account() {
                 {initials}
               </div>
               <div className="min-w-0">
-                <p className="truncate text-sm font-bold text-gray-900">
-                  {currentUser.firstName} {currentUser.lastName}
-                </p>
-                <p className="truncate text-xs text-gray-500">{currentUser.email}</p>
+                <p className="truncate text-sm font-bold text-gray-900">{user.fullName}</p>
+                <p className="truncate text-xs text-gray-500">{user.email}</p>
+                {user.isSeller && (
+                  <span className="mt-1 inline-flex items-center rounded-full bg-brand-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-700">
+                    Seller
+                  </span>
+                )}
               </div>
             </div>
 

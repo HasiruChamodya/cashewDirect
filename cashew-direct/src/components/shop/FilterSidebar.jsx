@@ -3,7 +3,6 @@ import { formatPrice } from '../../lib/format';
 import Rating from '../ui/Rating';
 
 const TAG_OPTIONS = [
-  { value: 'sale', label: 'On Sale' },
   { value: 'new', label: 'New Arrivals' },
   { value: 'bestseller', label: 'Bestsellers' },
   { value: 'trending', label: 'Trending' },

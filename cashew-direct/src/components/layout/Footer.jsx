@@ -60,7 +60,7 @@ export default function Footer() {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-white">
                 <Leaf className="h-5 w-5" strokeWidth={2} />
               </span>
-              <span className="text-lg font-bold tracking-tight text-brand-800">CashewDirect</span>
+              <span className="text-lg font-bold tracking-tight text-brand-800">Kaju.live</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-500">
               Premium cashews and nut products, sourced directly from Sri Lankan
@@ -100,7 +100,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-100">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-gray-400 sm:flex-row sm:px-6 lg:px-8">
-          <p>&copy; {new Date().getFullYear()} CashewDirect. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Kaju.live. All rights reserved.</p>
           <div className="flex gap-5">
             <Link to="/" className="transition hover:text-brand-700">Privacy Policy</Link>
             <Link to="/" className="transition hover:text-brand-700">Terms of Service</Link>

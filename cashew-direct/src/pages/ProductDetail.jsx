@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
   ShoppingBag,
   Heart,
@@ -19,10 +19,10 @@ import { formatPrice } from '../lib/format';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
+import { useAuth } from '../context/AuthContext';
 
 import Breadcrumbs from '../components/ui/Breadcrumbs';
 import Rating from '../components/ui/Rating';
-import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import QuantityStepper from '../components/ui/QuantityStepper';
 import Tabs from '../components/ui/Tabs';
@@ -34,6 +34,7 @@ import ProductCard from '../components/product/ProductCard';
 export default function ProductDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const product = getProductBySlug(slug);
   const [qty, setQty] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
@@ -42,6 +43,7 @@ export default function ProductDetail() {
   const { addItem } = useCart();
   const { toggle, has } = useWishlist();
   const { showToast } = useToast();
+  const { isAuthenticated } = useAuth();
 
   if (!product) {
     return (
@@ -62,16 +64,23 @@ export default function ProductDetail() {
   const wishlisted = has(product.id);
   const outOfStock = product.stock === 0;
   const lowStock = !outOfStock && product.stock <= STOCK_THRESHOLD_LOW;
-  const discount = product.compareAtPrice
-    ? Math.round((1 - product.price / product.compareAtPrice) * 100)
-    : null;
 
   function handleAddToCart() {
+    if (!isAuthenticated) {
+      showToast('Please sign in to add items to your cart.');
+      navigate('/login', { state: { from: location } });
+      return;
+    }
     addItem(product.id, qty);
     showToast(`${product.name} added to cart`);
   }
 
   function handleBuyNow() {
+    if (!isAuthenticated) {
+      showToast('Please sign in to continue.');
+      navigate('/login', { state: { from: location } });
+      return;
+    }
     addItem(product.id, qty);
     navigate('/checkout');
   }
@@ -116,12 +125,6 @@ export default function ProductDetail() {
           {/* Price */}
           <div className="mt-5 flex flex-wrap items-baseline gap-3">
             <span className="text-3xl font-extrabold tracking-tight text-gray-900">{formatPrice(product.price)}</span>
-            {product.compareAtPrice && (
-              <>
-                <span className="text-lg text-gray-400 line-through">{formatPrice(product.compareAtPrice)}</span>
-                <Badge variant="sale">Save {discount}%</Badge>
-              </>
-            )}
           </div>
           <p className="mt-1 text-sm text-gray-500">{product.weight} · Inclusive of all taxes</p>
 

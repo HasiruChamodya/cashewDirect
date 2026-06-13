@@ -97,7 +97,7 @@ export default function Checkout() {
 
   function handlePlaceOrder(e) {
     e.preventDefault();
-    const id = `CD-${Math.floor(100000 + Math.random() * 900000)}`;
+    const id = `KJ-${Math.floor(100000 + Math.random() * 900000)}`;
     setOrderId(id);
     setOrderPlaced(true);
     clear();

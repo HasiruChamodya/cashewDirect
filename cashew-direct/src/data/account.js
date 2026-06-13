@@ -1,14 +1,6 @@
-export const currentUser = {
-  firstName: 'Heshan',
-  lastName: 'Pramuditha',
-  email: 'heshan@example.com',
-  phone: '+94 77 123 4567',
-  joined: '2025-02-14',
-};
-
 export const orders = [
   {
-    id: 'CD-100231',
+    id: 'KJ-100231',
     date: '2026-05-28',
     status: 'Delivered',
     total: 6700,
@@ -17,7 +9,7 @@ export const orders = [
     ],
   },
   {
-    id: 'CD-100214',
+    id: 'KJ-100214',
     date: '2026-05-12',
     status: 'Delivered',
     total: 4100,
@@ -28,7 +20,7 @@ export const orders = [
     ],
   },
   {
-    id: 'CD-100187',
+    id: 'KJ-100187',
     date: '2026-04-30',
     status: 'In Transit',
     total: 2950,
@@ -37,7 +29,7 @@ export const orders = [
     ],
   },
   {
-    id: 'CD-100142',
+    id: 'KJ-100142',
     date: '2026-04-08',
     status: 'Cancelled',
     total: 2200,

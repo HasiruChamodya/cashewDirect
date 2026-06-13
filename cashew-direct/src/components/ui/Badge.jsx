@@ -1,7 +1,6 @@
 const VARIANTS = {
   bestseller: 'bg-brand-800 text-white',
   new: 'bg-brand-500 text-white',
-  sale: 'bg-red-500 text-white',
   trending: 'bg-amber-500 text-white',
   'low-stock': 'bg-amber-100 text-amber-800',
   'out-of-stock': 'bg-gray-200 text-gray-600',
@@ -12,7 +11,6 @@ const VARIANTS = {
 const LABELS = {
   bestseller: 'Bestseller',
   new: 'New',
-  sale: 'Sale',
   trending: 'Trending',
   'low-stock': 'Low Stock',
   'out-of-stock': 'Out of Stock',

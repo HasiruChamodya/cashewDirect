@@ -90,11 +90,6 @@ export default function Cart() {
                     size="sm"
                   />
                   <div className="text-right">
-                    {line.product.compareAtPrice && (
-                      <p className="text-xs text-gray-400 line-through">
-                        {formatPrice(line.product.compareAtPrice * line.qty)}
-                      </p>
-                    )}
                     <p className="text-sm font-bold text-gray-900 sm:text-base">{formatPrice(line.lineTotal)}</p>
                   </div>
                 </div>

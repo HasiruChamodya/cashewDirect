@@ -98,7 +98,7 @@ export const testimonials = [
     name: 'Amaya Perera',
     role: 'Verified Buyer · Colombo',
     rating: 5,
-    body: "I've ordered from CashewDirect five times now and every single batch has been fresh and well packed. It's become my default gift for visiting family abroad.",
+    body: "I've ordered from Kaju.live five times now and every single batch has been fresh and well packed. It's become my default gift for visiting family abroad.",
   },
   {
     name: 'Ruwan Jayasuriya',
