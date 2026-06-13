@@ -1,27 +1,34 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Landing from './pages/Landing'
-import SellerDashboard from './pages/SellerDashboard'
-import Marketplace from './pages/Marketplace'
-import Checkout from './pages/Checkout'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
+import { ToastProvider } from './context/ToastContext';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Account from './pages/Account';
 
 export default function App() {
   return (
-    <Router>
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Navbar />
-        <main style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/"            element={<Landing />} />
-            <Route path="/sell"        element={<SellerDashboard />} />
-            <Route path="/marketplace" element={<Marketplace />} />
-            <Route path="/checkout"    element={<Checkout />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  )
+    <CartProvider>
+      <WishlistProvider>
+        <ToastProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/product/:slug" element={<ProductDetail />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/account" element={<Account />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </ToastProvider>
+      </WishlistProvider>
+    </CartProvider>
+  );
 }
